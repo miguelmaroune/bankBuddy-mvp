@@ -15,10 +15,8 @@ public class Account {
     private Long clientId;
     private Client client;
 
-    // Default Constructor
     public Account() {}
 
-    // Constructor with all fields
     public Account(Long id, AccountType type, Currency currency, BigDecimal balance, LocalDateTime createdAt, Long clientId, Client client) {
         this.id = id;
         this.type = type;
@@ -28,8 +26,6 @@ public class Account {
         this.clientId = clientId;
         this.client = client;
     }
-
-    // Getter and Setter methods for all fields
 
     public Long getId() {
         return id;
@@ -87,7 +83,6 @@ public class Account {
         this.client = client;
     }
 
-    // Builder pattern for Account class
     public static AccountBuilder builder() {
         return new AccountBuilder();
     }

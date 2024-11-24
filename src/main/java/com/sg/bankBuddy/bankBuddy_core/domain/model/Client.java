@@ -10,11 +10,8 @@ public class Client {
     private String address;
     private Set<Account> accounts;
 
-    // Default Constructor
     public Client() {}
-
-    // Constructor with all fields
-    public Client(Long id, String firstName, String lastName, String email, String address, Set<Account> accounts) {
+public Client(Long id, String firstName, String lastName, String email, String address, Set<Account> accounts) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,8 +19,6 @@ public class Client {
         this.address = address;
         this.accounts = accounts;
     }
-
-    // Getter and Setter methods for all fields
 
     public Long getId() {
         return id;
@@ -73,7 +68,6 @@ public class Client {
         this.accounts = accounts;
     }
 
-    // Builder pattern for Client class
     public static ClientBuilder builder() {
         return new ClientBuilder();
     }
