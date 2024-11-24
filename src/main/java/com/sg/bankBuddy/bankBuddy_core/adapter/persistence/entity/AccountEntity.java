@@ -26,6 +26,7 @@ public class AccountEntity {
 
     private String currency;
 
+    @Column(name = "balance", columnDefinition = "DECIMAL(19,2) DEFAULT 0")
     private BigDecimal balance;
 
     @Column(name = "created_at", updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -34,4 +35,15 @@ public class AccountEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private ClientEntity client;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.balance == null) {
+            this.balance = BigDecimal.ZERO;
+        }
+
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
 }

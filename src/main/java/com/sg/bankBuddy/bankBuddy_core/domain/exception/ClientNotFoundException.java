@@ -1,10 +1,7 @@
 package com.sg.bankBuddy.bankBuddy_core.domain.exception;
 
-import lombok.Getter;
-
-public class ClientNotFoundException extends RuntimeException{
+public class ClientNotFoundException extends RuntimeException {
     private final String message;
-    @Getter
     private final String code;
 
     public ClientNotFoundException(BankBudyErrorCodes error) {
@@ -16,5 +13,9 @@ public class ClientNotFoundException extends RuntimeException{
     @Override
     public String getMessage() {
         return message;
+    }
+
+    public String getCode() {
+        return code;
     }
 }
