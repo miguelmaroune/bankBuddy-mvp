@@ -7,6 +7,8 @@ import com.sg.bankBuddy.bankBuddy_core.domain.exception.BankBudyErrorCodes;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Account;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class FindAccountByIdService implements FindAccountByIdUseCase {
     private final AccountRepository accountRepository;
@@ -16,7 +18,7 @@ public class FindAccountByIdService implements FindAccountByIdUseCase {
     }
 
     @Override
-    public Account findById(Long id) {
+    public Account findById(UUID id) {
         return accountRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException(BankBudyErrorCodes.ACCOUNT_NOT_FOUND));
     }

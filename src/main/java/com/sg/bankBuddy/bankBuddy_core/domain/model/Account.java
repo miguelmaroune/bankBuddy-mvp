@@ -5,9 +5,10 @@ import com.sg.bankBuddy.bankBuddy_core.domain.enums.Currency;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Account {
-    private Long id;
+    private UUID id;
     private AccountType type;
     private Currency currency;
     private BigDecimal balance;
@@ -17,7 +18,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(Long id, AccountType type, Currency currency, BigDecimal balance, LocalDateTime createdAt, Long clientId, Client client) {
+    public Account(UUID id, AccountType type, Currency currency, BigDecimal balance, LocalDateTime createdAt, Long clientId, Client client) {
         this.id = id;
         this.type = type;
         this.currency = currency;
@@ -27,11 +28,11 @@ public class Account {
         this.client = client;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -88,7 +89,7 @@ public class Account {
     }
 
     public static class AccountBuilder {
-        private Long id;
+        private UUID id;
         private AccountType type;
         private Currency currency;
         private BigDecimal balance;
@@ -96,7 +97,7 @@ public class Account {
         private Long clientId;
         private Client client;
 
-        public AccountBuilder id(Long id) {
+        public AccountBuilder id(UUID id) {
             this.id = id;
             return this;
         }

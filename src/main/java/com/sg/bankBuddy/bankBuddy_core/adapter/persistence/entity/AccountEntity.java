@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -18,15 +19,14 @@ import java.time.LocalDateTime;
 public class AccountEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "account_id")
-    private Long id;
+    private UUID id;
 
     private String type;
 
     private String currency;
 
-    @Column(name = "balance", columnDefinition = "DECIMAL(19,2) DEFAULT 0")
     private BigDecimal balance;
 
     @Column(name = "created_at", updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
