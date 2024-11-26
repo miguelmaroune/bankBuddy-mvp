@@ -1,6 +1,10 @@
 package com.sg.bankBuddy.bankBuddy_core.infrastructure.config;
 
 import com.sg.bankBuddy.bankBuddy_core.domain.model.state.*;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.AccountDepositLimitValidator;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.AmountValidator;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.SufficientAccountBalanceValidator;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.ValidationHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -32,5 +36,27 @@ public class TransactionConfig {
     ) {
         return new TransactionContext(pendingState, validState, rejectedState);
     }
+
+
+    @Bean
+    public ValidationHandler depositValidationChain() {
+        ValidationHandler amountValidator = new AmountValidator();
+        ValidationHandler accountDepositLimitValidator = new AccountDepositLimitValidator();
+
+        amountValidator.linkWith(accountDepositLimitValidator);
+
+        return amountValidator;
+    }
+
+    @Bean
+    public ValidationHandler withdrawalValidationChain() {
+        ValidationHandler amountValidator = new AmountValidator();
+        ValidationHandler sufficientAccountBalanceValidator = new SufficientAccountBalanceValidator();
+
+        amountValidator.linkWith(sufficientAccountBalanceValidator);
+
+        return amountValidator;
+    }
+
 }
 

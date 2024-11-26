@@ -1,6 +1,7 @@
 package com.sg.bankBuddy.bankBuddy_core.domain.model.state;
 
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Transaction;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.ValidationHandler;
 
 public class TransactionContext {
 
@@ -9,6 +10,8 @@ public class TransactionContext {
     private final TransactionState validState;
     private final TransactionState rejectedState;
     private Transaction transaction;
+
+    private ValidationHandler validationHandler;
 
     public TransactionContext(
             PendingState pendingState,
@@ -52,5 +55,14 @@ public class TransactionContext {
 
     public void moveToRejected() {
         setState(rejectedState);
+    }
+
+    public void setValidationHandler(ValidationHandler validationHandler) {
+        this.validationHandler = validationHandler;
+    }
+
+    public boolean validateTransaction() {//todo ?????
+        validationHandler.validate(transaction);
+        return transaction.getDescription() == null;
     }
 }
