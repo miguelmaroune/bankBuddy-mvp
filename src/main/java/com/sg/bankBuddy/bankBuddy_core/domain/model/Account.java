@@ -16,7 +16,8 @@ public class Account {
     private Long clientId;
     private Client client;
 
-    public Account() {}
+    public Account() {
+    }
 
     public Account(UUID id, AccountType type, Currency currency, BigDecimal balance, LocalDateTime createdAt, Long clientId, Client client) {
         this.id = id;

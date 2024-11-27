@@ -21,7 +21,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateClientDto> createClient(@RequestBody CreateClientDto createClientDto){
+    public ResponseEntity<CreateClientDto> createClient(@RequestBody CreateClientDto createClientDto) {
         Client client = CreateClientDtoMapper.toDomain(createClientDto);
         Client createdClient = createClientUseCase.createClient(client);
         return new ResponseEntity<>(CreateClientDtoMapper.toDto(createdClient), HttpStatus.CREATED);

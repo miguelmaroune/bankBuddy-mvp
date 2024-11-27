@@ -10,8 +10,10 @@ public class Client {
     private String address;
     private Set<Account> accounts;
 
-    public Client() {}
-public Client(Long id, String firstName, String lastName, String email, String address, Set<Account> accounts) {
+    public Client() {
+    }
+
+    public Client(Long id, String firstName, String lastName, String email, String address, Set<Account> accounts) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

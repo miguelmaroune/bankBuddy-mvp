@@ -14,9 +14,11 @@ import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.ValidationHa
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+
 @Service
 public class WithdrawalTransactionService implements WithdrawalTransactionUseCase {
     private final TransactionService transactionService;
@@ -49,11 +51,16 @@ public class WithdrawalTransactionService implements WithdrawalTransactionUseCas
         return processTransaction(account, transactionContext);
 
     }
-    private Transaction processTransaction(Account account, TransactionContext transactionContext) {
+
+    @Transactional(rollbackFor = {Exception.class, Error.class})
+    protected Transaction processTransaction(Account account, TransactionContext transactionContext) {
         if (transactionContext.getTransaction() != null &&
                 transactionContext.getTransaction().getStatus().equals(TransactionStatus.VALID)) {
             transactionService.updateAccountBalance(account, account.getBalance().subtract(transactionContext.getTransaction().getAmount()));
         }
+
+        BigDecimal newBalance = account.getBalance().subtract(transactionContext.getTransaction().getAmount());
+        transactionContext.getTransaction().setBalance(newBalance);
         return transactionRepository.save(transactionContext.getTransaction());
     }
 
