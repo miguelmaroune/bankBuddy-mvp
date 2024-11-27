@@ -36,4 +36,6 @@ public class TransactionEntity {
 
     private LocalDateTime timeStamp;
 
+    private BigDecimal balance;
+
 }

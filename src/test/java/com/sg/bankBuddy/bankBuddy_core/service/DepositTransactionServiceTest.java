@@ -2,8 +2,8 @@ package com.sg.bankBuddy.bankBuddy_core.service;
 
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.AccountRepository;
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.TransactionRepository;
-import com.sg.bankBuddy.bankBuddy_core.application.service.TransactionService;
 import com.sg.bankBuddy.bankBuddy_core.application.service.DepositTransactionService;
+import com.sg.bankBuddy.bankBuddy_core.application.service.TransactionService;
 import com.sg.bankBuddy.bankBuddy_core.domain.enums.TransactionStatus;
 import com.sg.bankBuddy.bankBuddy_core.domain.enums.TransactionType;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Account;
@@ -12,8 +12,8 @@ import com.sg.bankBuddy.bankBuddy_core.domain.model.state.PendingState;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.state.RejectedState;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.state.TransactionContext;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.state.ValidState;
-import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.AmountValidator;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.AccountDepositLimitValidator;
+import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.AmountValidator;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.validationChain.ValidationHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class DepositTransactionServiceTest {

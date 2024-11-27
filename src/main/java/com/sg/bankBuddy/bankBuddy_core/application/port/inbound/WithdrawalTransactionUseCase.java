@@ -6,5 +6,5 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public interface WithdrawalTransactionUseCase {
-    Transaction withdrawal(UUID accountId , BigDecimal amount);
+    Transaction withdrawal(UUID accountId, BigDecimal amount);
 }

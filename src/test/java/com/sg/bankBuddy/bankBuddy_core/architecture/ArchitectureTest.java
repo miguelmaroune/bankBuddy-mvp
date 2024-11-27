@@ -24,6 +24,7 @@ class ArchitectureTest {
 
         rule.check(importedClasses);
     }
+
     @Test
     void noCyclicDependenciesBetweenPackages() {
         ArchRule rule = slices()

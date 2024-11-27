@@ -15,8 +15,9 @@ public class Transaction {
     private BigDecimal amount;
     private String description;
     private LocalDateTime timeStamp;
+    private BigDecimal balance;
 
-    public Transaction(Long id, Account account, TransactionType type, TransactionStatus status, BigDecimal amount, String description, LocalDateTime timeStamp) {
+    public Transaction(Long id, Account account, TransactionType type, TransactionStatus status, BigDecimal amount, String description, LocalDateTime timeStamp, BigDecimal balance) {
         this.id = id;
         this.account = account;
         this.type = type;
@@ -24,9 +25,11 @@ public class Transaction {
         this.amount = amount;
         this.description = description;
         this.timeStamp = timeStamp;
+        this.balance = balance;
     }
 
-    public Transaction() {}
+    public Transaction() {
+    }
 
     public Long getId() {
         return id;
@@ -56,6 +59,10 @@ public class Transaction {
         return timeStamp;
     }
 
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -83,9 +90,15 @@ public class Transaction {
     public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
-    public static TransactionBuilder builder(){
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public static TransactionBuilder builder() {
         return new TransactionBuilder();
     }
+
     public static class TransactionBuilder {
         private Long id;
         private Account account;
@@ -94,6 +107,7 @@ public class Transaction {
         private BigDecimal amount;
         private String description;
         private LocalDateTime timeStamp;
+        private BigDecimal balance;
 
         public TransactionBuilder id(Long id) {
             this.id = id;
@@ -130,8 +144,13 @@ public class Transaction {
             return this;
         }
 
+        public TransactionBuilder balance(BigDecimal balance) {
+            this.balance = balance;
+            return this;
+        }
+
         public Transaction build() {
-            return new Transaction(id, account, type, status, amount, description, timeStamp);
+            return new Transaction(id, account, type, status, amount, description, timeStamp, balance);
         }
     }
 }

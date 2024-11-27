@@ -1,23 +1,24 @@
 package com.sg.bankBuddy.bankBuddy_core.service;
+
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.AccountRepository;
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.ClientRepository;
 import com.sg.bankBuddy.bankBuddy_core.application.service.CreateAccountService;
+import com.sg.bankBuddy.bankBuddy_core.domain.exception.BankBudyErrorCodes;
 import com.sg.bankBuddy.bankBuddy_core.domain.exception.ClientNotFoundException;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Account;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Client;
-import com.sg.bankBuddy.bankBuddy_core.domain.exception.BankBudyErrorCodes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Objects;
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
-
-import java.util.Objects;
-import java.util.Optional;
 
 public class CreateAccountServiceTest {
 
@@ -53,8 +54,8 @@ public class CreateAccountServiceTest {
 
         verify(clientRepository).findById(anyLong());
         verify(accountRepository).save(any(Account.class));
-        assert(result != null);
-        assert(result.getClient() != null);
+        assert (result != null);
+        assert (result.getClient() != null);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class CreateAccountServiceTest {
             createAccountService.createAccount(account);
         } catch (ClientNotFoundException e) {
 
-            assert(Objects.equals(e.getCode(), BankBudyErrorCodes.CLIENT_NOT_FOUND.getCode()));
+            assert (Objects.equals(e.getCode(), BankBudyErrorCodes.CLIENT_NOT_FOUND.getCode()));
         }
 
 

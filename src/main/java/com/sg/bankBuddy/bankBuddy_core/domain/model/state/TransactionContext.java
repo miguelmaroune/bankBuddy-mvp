@@ -61,7 +61,7 @@ public class TransactionContext {
         this.validationHandler = validationHandler;
     }
 
-    public boolean validateTransaction() {//todo ?????
+    public boolean validateTransaction() {
         validationHandler.validate(transaction);
         return transaction.getDescription() == null;
     }

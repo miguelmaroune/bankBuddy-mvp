@@ -6,15 +6,15 @@ import com.sg.bankBuddy.bankBuddy_core.domain.model.Transaction;
 
 import java.math.BigDecimal;
 
-public class SufficientAccountBalanceValidator extends ValidationHandler{
+public class SufficientAccountBalanceValidator extends ValidationHandler {
     @Override
     public boolean doValidate(Transaction transaction) {
         boolean isValid;
         Account account = transaction.getAccount();
         BigDecimal transactionAmount = transaction.getAmount();
         BigDecimal currentAmount = account.getBalance();
-        isValid =  transactionAmount.compareTo(currentAmount) <= 0;
-        if(!isValid){
+        isValid = transactionAmount.compareTo(currentAmount) <= 0;
+        if (!isValid) {
             transaction.setDescription(BankBudyErrorCodes.INSUFFICIENT_BALANCE.getCode());
         }
 

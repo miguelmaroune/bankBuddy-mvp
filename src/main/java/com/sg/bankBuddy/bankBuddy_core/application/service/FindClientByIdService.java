@@ -1,7 +1,6 @@
 package com.sg.bankBuddy.bankBuddy_core.application.service;
 
 import com.sg.bankBuddy.bankBuddy_core.application.port.inbound.FindClientByIdUseCase;
-import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.AccountRepository;
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.ClientRepository;
 import com.sg.bankBuddy.bankBuddy_core.domain.exception.BankBudyErrorCodes;
 import com.sg.bankBuddy.bankBuddy_core.domain.exception.ClientNotFoundException;
@@ -20,6 +19,6 @@ public class FindClientByIdService implements FindClientByIdUseCase {
     @Override
     public Client findById(Long id) {
         return clientRepository.findById(id)
-                .orElseThrow( () -> new ClientNotFoundException(BankBudyErrorCodes.CLIENT_NOT_FOUND) );
+                .orElseThrow(() -> new ClientNotFoundException(BankBudyErrorCodes.CLIENT_NOT_FOUND));
     }
 }

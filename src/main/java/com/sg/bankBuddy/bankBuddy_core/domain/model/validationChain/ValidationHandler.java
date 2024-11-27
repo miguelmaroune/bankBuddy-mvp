@@ -6,7 +6,7 @@ public abstract class ValidationHandler {
 
     private ValidationHandler next;
 
-    public ValidationHandler linkWith(ValidationHandler next){
+    public ValidationHandler linkWith(ValidationHandler next) {
         this.next = next;
         return next;
     }
