@@ -33,9 +33,9 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public void updateAccountBalance(Account account, BigDecimal amount) {
+    public Account updateAccountBalance(Account account, BigDecimal amount) {
         account.setBalance(amount);
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
 }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class AmountValidator extends ValidationHandler {
     @Override
-    protected boolean doValidate(Transaction transaction) {
+    public boolean doValidate(Transaction transaction) {
         if (transaction.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             transaction.setDescription(BankBudyErrorCodes.INVALID_TRANSACTION_AMOUNT.getCode());
             return false;

@@ -17,6 +17,6 @@ public abstract class ValidationHandler {
         }
     }
 
-    protected abstract boolean doValidate(Transaction transaction);
+    public abstract boolean doValidate(Transaction transaction);
 
 }

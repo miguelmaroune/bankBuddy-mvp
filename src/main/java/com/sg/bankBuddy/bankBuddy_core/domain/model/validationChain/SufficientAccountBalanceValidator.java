@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class SufficientAccountBalanceValidator extends ValidationHandler{
     @Override
-    protected boolean doValidate(Transaction transaction) {
+    public boolean doValidate(Transaction transaction) {
         boolean isValid;
         Account account = transaction.getAccount();
         BigDecimal transactionAmount = transaction.getAmount();
