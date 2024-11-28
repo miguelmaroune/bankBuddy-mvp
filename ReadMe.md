@@ -15,8 +15,6 @@ BankBuddy MVP is a lightweight banking application built using **Spring Boot**, 
 7. [Testing](#testing)
 8. [Dockerization](#dockerization)
 9. [Future Enhancements](#future-enhancements)
-10. [Contribution Guidelines](#contribution-guidelines)
-11. [License](#license)
 
 ---
 
