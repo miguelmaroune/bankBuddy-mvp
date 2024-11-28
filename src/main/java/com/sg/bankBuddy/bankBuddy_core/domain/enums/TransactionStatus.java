@@ -12,7 +12,6 @@ public enum TransactionStatus {
                 return transactionStatus;
             }
         }
-        // Handle exception for invalid status
         throw new IllegalArgumentException("Unknown transaction status: " + status);
     }
 }

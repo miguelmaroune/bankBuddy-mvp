@@ -12,7 +12,7 @@ public class AccountDepositLimitValidator extends ValidationHandler {
         Account account = transaction.getAccount();
         BigDecimal currentBalance = account.getBalance();
         BigDecimal effectiveBalance = currentBalance.add(transaction.getAmount());
-
+//todo : Add Deposit Limit in the account type table.
         boolean isValid = effectiveBalance.compareTo(new BigDecimal(1000000)) <= 0;
 
         if (!isValid) {

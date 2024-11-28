@@ -1,12 +1,7 @@
 package com.sg.bankBuddy.bankBuddy_core.adapter.api.controller;
 
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.AccountLedgerDto;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.CreateAccountDto;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.TransactionDto;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.TransactionRequestDto;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.mapper.AccountLedgerDtoMaper;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.mapper.CreateAccountDtoMapper;
-import com.sg.bankBuddy.bankBuddy_core.adapter.api.mapper.TransactionDtoMapper;
+import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.*;
+import com.sg.bankBuddy.bankBuddy_core.adapter.api.mapper.*;
 import com.sg.bankBuddy.bankBuddy_core.application.port.inbound.*;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Account;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Transaction;
@@ -39,21 +34,33 @@ public class AccountController {
     private final AccountLedgerUseCase accountLedgerUseCase;
     private final TransactionReportUseCase transactionReportUseCase;
 
-    public AccountController(CreateAccountUseCase createAccountUseCase, DepositTransactionUseCase depositTransactionUseCase, WithdrawalTransactionUseCase withdrawalTransactionUseCase, AccountLedgerUseCase accountLedgerUseCase, TransactionReportUseCase transactionReportUseCase) {
+    private final FindAccountByIdUseCase accountByIdUseCase;
+
+    public AccountController(CreateAccountUseCase createAccountUseCase, DepositTransactionUseCase depositTransactionUseCase, WithdrawalTransactionUseCase withdrawalTransactionUseCase, AccountLedgerUseCase accountLedgerUseCase, TransactionReportUseCase transactionReportUseCase, FindAccountByIdUseCase accountByIdUseCase) {
         this.createAccountUseCase = createAccountUseCase;
         this.depositTransactionUseCase = depositTransactionUseCase;
         this.withdrawalTransactionUseCase = withdrawalTransactionUseCase;
         this.accountLedgerUseCase = accountLedgerUseCase;
         this.transactionReportUseCase = transactionReportUseCase;
+        this.accountByIdUseCase = accountByIdUseCase;
     }
 
     @Operation(summary = "Create a new account", description = "Creates a new bank account based on provided details.")
     @ApiResponse(responseCode = "201", description = "Account successfully created.")
     @PostMapping
-    public ResponseEntity<CreateAccountDto> createAccount(@RequestBody CreateAccountDto accountDto) {
+    public ResponseEntity<AccountDto> createAccount(@RequestBody CreateAccountDto accountDto) {
         Account account = CreateAccountDtoMapper.toDomain(accountDto);
         Account createdAccount = createAccountUseCase.createAccount(account);
-        return new ResponseEntity<>(CreateAccountDtoMapper.toDto(createdAccount), HttpStatus.CREATED);
+        return new ResponseEntity<>(AccountDtoMapper.toDto(createdAccount), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Find an Account by ID", description = "Retrieves an account based on the provided account ID.")
+    @ApiResponse(responseCode = "200", description = "Account found.")
+    @ApiResponse(responseCode = "404", description = "Account not found.")
+    @GetMapping("/{accountId}")
+    public ResponseEntity<AccountDto> findAccountById(@PathVariable UUID accountId) {
+        Account account = accountByIdUseCase.findById(accountId);
+        return new ResponseEntity<>(AccountDtoMapper.toDto(account), HttpStatus.OK);
     }
 
     @Operation(summary = "Deposit money into an account", description = "Deposits a specified amount into an account.")

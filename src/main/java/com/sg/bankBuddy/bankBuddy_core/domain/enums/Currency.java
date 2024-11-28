@@ -10,7 +10,6 @@ public enum Currency {
                 return curr;
             }
         }
-        //todo : handle the exception
         throw new IllegalArgumentException("Unknown currency: " + currency);
     }
 }

@@ -32,7 +32,7 @@ public class ClientEntity {
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "client", orphanRemoval = true)
+    @OneToMany(mappedBy = "client", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<AccountEntity> accounts;
 
     @PrePersist
