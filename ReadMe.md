@@ -114,15 +114,6 @@ You can execute the unit tests using:
 Service Layer: Ensures the correctness of business logic.
 Hexagonal Principles: Validates architectural compliance.
 
-### Dockerization
-Build and Run with Docker
-Build the Docker image:
-```bash
-docker build -t bankbuddy-mvp .
-docker run -p 8080:8080 bankbuddy-mvp
-```
-Access the application at: http://localhost:8080
-
 ### Future Enhancements
 
 - **Authentication & Authorization**: Implement JWT-based authentication and authorization mechanisms.
