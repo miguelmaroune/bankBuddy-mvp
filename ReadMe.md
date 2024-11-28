@@ -73,6 +73,7 @@ To build the project using Maven, run the following command:
 ```bash
 mvn clean package -DskipTests
 ```
+This will clean any previous builds and package the project into a JAR file (target/bankBuddy-core-0.0.1-SNAPSHOT.jar
 ### Run the Application
 To run the application locally, use the following command:
 
@@ -81,12 +82,17 @@ java -jar target/bankBuddy-core-0.0.1-SNAPSHOT.jar
 ```
 ### Run with Docker
 To build and run the application using Docker:
+#### 1- If you haven't already built the Docker image, you can use Docker Compose to build it by running the following command:
 ```bash
-docker build -t bankbuddy-mvp .
+docker docker-compose up --build
 ```
-Run the container:
+This will:
+ - Build the Docker image using the Dockerfile located in the docker/ directory.
+ - Start the application (app service) and the PostgreSQL database (db service).
+The bankbuddy-core:latest image will be tagged and used.
+#### 2. Start the Containers with Docker Compose
 ```bash
-docker run -p 8080:8080 bankbuddy-mvp
+docker-compose up
 ```
 Access the application at http://localhost:8080
 
