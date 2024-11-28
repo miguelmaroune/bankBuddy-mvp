@@ -4,6 +4,8 @@ import com.sg.bankBuddy.bankBuddy_core.adapter.api.dto.CreateClientDto;
 import com.sg.bankBuddy.bankBuddy_core.adapter.api.mapper.CreateClientDtoMapper;
 import com.sg.bankBuddy.bankBuddy_core.application.port.inbound.CreateClientUseCase;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Client;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,8 @@ public class ClientController {
         this.createClientUseCase = createClientUseCase;
     }
 
+    @Operation(summary = "Create a new client", description = "Creates a new client with the provided details.")
+    @ApiResponse(responseCode = "201", description = "Client successfully created.")
     @PostMapping
     public ResponseEntity<CreateClientDto> createClient(@RequestBody CreateClientDto createClientDto) {
         Client client = CreateClientDtoMapper.toDomain(createClientDto);
