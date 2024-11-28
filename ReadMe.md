@@ -122,9 +122,10 @@ docker run -p 8080:8080 bankbuddy-mvp
 Access the application at: http://localhost:8080
 
 ### Future Enhancements
-Authentication & Authorization mechanisms using jwt.
-Adding Resilience4j to handle retries and circuit breakers
-Integrate Kafka to publish account transaction operations to a specific topic, ensuring reliable delivery and enabling guaranteed processing of these transactions by downstream services.
-Adding a spring batch that will launch peridically using a Cron and handle stuck transactions.
-Add a Spring Batch job configured to run periodically using a Cron expression to handle and recover stuck transactions
-Add e2e tests to cover end to end scenarios. 
+
+- **Authentication & Authorization**: Implement JWT-based authentication and authorization mechanisms.
+- **Resilience4j**: Add Resilience4j to handle retries and circuit breakers, ensuring fault tolerance and service stability.
+- **Kafka Integration**: Integrate Kafka to publish account transaction operations to a specific topic, ensuring reliable delivery and enabling guaranteed processing of these transactions by downstream services.
+- **Spring Batch**: Add a Spring Batch job configured to run periodically using a Cron expression to handle and recover stuck transactions.
+- **End-to-End Tests**: Add end-to-end (e2e) tests to cover full system scenarios and ensure comprehensive validation.
+
