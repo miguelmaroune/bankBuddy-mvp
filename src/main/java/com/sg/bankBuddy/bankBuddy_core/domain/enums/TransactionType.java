@@ -10,7 +10,6 @@ public enum TransactionType {
                 return transactionType;
             }
         }
-        // Handle exception for invalid type
         throw new IllegalArgumentException("Unknown transaction type: " + type);
     }
 }

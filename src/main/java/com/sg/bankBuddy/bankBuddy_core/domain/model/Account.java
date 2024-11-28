@@ -6,7 +6,7 @@ import com.sg.bankBuddy.bankBuddy_core.domain.enums.Currency;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+//todo: use an abstract class with the common account specifications , and different other classes like : CurrentAccount , CheckingAccount with their proper logic
 public class Account {
     private UUID id;
     private AccountType type;

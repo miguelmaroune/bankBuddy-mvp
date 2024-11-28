@@ -49,14 +49,11 @@ public class CreateAccountServiceTest {
 
     @Test
     void testCreateAccount_Success() {
-        // Arrange
         when(clientRepository.findById(anyLong())).thenReturn(Optional.of(client));
         when(accountRepository.save(any(Account.class))).thenReturn(account);
 
-        // Act
         Account result = createAccountService.createAccount(account);
 
-        // Assert
         verify(clientRepository).findById(anyLong());
         verify(accountRepository).save(any(Account.class));
         assertNotNull(result);
@@ -65,16 +62,13 @@ public class CreateAccountServiceTest {
 
     @Test
     void testCreateAccount_ClientNotFound() {
-        // Arrange
         when(clientRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-        // Act & Assert
         ClientNotFoundException exception = assertThrows(ClientNotFoundException.class, () -> {
             createAccountService.createAccount(account);
         });
         assertEquals(BankBudyErrorCodes.CLIENT_NOT_FOUND.getCode(), exception.getCode());
 
-        // Verify that account save was not called
         verify(clientRepository).findById(anyLong());
         verify(accountRepository, never()).save(any(Account.class));
     }

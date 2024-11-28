@@ -22,6 +22,7 @@ public class CreateAccountService implements CreateAccountUseCase {
 
     @Override
     public Account createAccount(Account account) {
+        //todo : Add account Factory to create multiple types of accounts.
         Client client = clientRepository.findById(account.getClient().getId())
                 .orElseThrow(() -> new ClientNotFoundException(BankBudyErrorCodes.CLIENT_NOT_FOUND));
         account.setClient(client);

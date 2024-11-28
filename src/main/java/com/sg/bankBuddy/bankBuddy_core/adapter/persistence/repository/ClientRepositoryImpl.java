@@ -5,6 +5,7 @@ import com.sg.bankBuddy.bankBuddy_core.adapter.persistence.mapper.ClientEntityMa
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.ClientRepository;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Client;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

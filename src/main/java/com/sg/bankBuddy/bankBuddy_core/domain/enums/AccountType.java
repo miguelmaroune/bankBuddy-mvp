@@ -11,7 +11,6 @@ public enum AccountType {
                 return accountType;
             }
         }
-        //todo: handle the Exception...
         throw new IllegalArgumentException("Unknown account type: " + type);
     }
 }

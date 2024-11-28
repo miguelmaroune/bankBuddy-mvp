@@ -1,7 +1,5 @@
 package com.sg.bankBuddy.bankBuddy_core.application.service;
 
-import com.sg.bankBuddy.bankBuddy_core.adapter.persistence.mapper.TransactionEntityMapper;
-import com.sg.bankBuddy.bankBuddy_core.adapter.persistence.repository.JpaTransactionRepository;
 import com.sg.bankBuddy.bankBuddy_core.application.port.inbound.AccountLedgerUseCase;
 import com.sg.bankBuddy.bankBuddy_core.application.port.outbound.TransactionRepository;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Transaction;
