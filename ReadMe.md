@@ -97,6 +97,9 @@ docker-compose up
 Access the application at http://localhost:8080
 
 ### API Documentation
+You can access the interactive API documentation via Swagger UI by visiting the following URL:
+- **Swagger**: http://localhost:8080/swagger-ui/index.html
+  
 Available Endpoints
 # API Endpoints Documentation
 
