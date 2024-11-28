@@ -38,6 +38,7 @@ public class WithdrawalTransactionService implements WithdrawalTransactionUseCas
 
 
     @Override
+    @Transactional(rollbackFor = {Exception.class, Error.class})
     public Transaction withdrawal(UUID accountId, BigDecimal amount) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(BankBudyErrorCodes.ACCOUNT_NOT_FOUND));
@@ -52,7 +53,6 @@ public class WithdrawalTransactionService implements WithdrawalTransactionUseCas
 
     }
 
-    @Transactional(rollbackFor = {Exception.class, Error.class})
     protected Transaction processTransaction(Account account, TransactionContext transactionContext) {
         if (transactionContext.getTransaction() != null &&
                 transactionContext.getTransaction().getStatus().equals(TransactionStatus.VALID)) {

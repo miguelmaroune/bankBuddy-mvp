@@ -9,17 +9,21 @@ import com.sg.bankBuddy.bankBuddy_core.domain.model.Account;
 import com.sg.bankBuddy.bankBuddy_core.domain.model.Client;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Objects;
 import java.util.Optional;
 
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class CreateAccountServiceTest {
 
     @InjectMocks
@@ -36,8 +40,6 @@ public class CreateAccountServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
-
         client = new Client();
         client.setId(1L);
 
@@ -47,33 +49,33 @@ public class CreateAccountServiceTest {
 
     @Test
     void testCreateAccount_Success() {
+        // Arrange
         when(clientRepository.findById(anyLong())).thenReturn(Optional.of(client));
         when(accountRepository.save(any(Account.class))).thenReturn(account);
 
+        // Act
         Account result = createAccountService.createAccount(account);
 
+        // Assert
         verify(clientRepository).findById(anyLong());
         verify(accountRepository).save(any(Account.class));
-        assert (result != null);
-        assert (result.getClient() != null);
+        assertNotNull(result);
+        assertNotNull(result.getClient());
     }
 
     @Test
     void testCreateAccount_ClientNotFound() {
-
+        // Arrange
         when(clientRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-
-        try {
+        // Act & Assert
+        ClientNotFoundException exception = assertThrows(ClientNotFoundException.class, () -> {
             createAccountService.createAccount(account);
-        } catch (ClientNotFoundException e) {
+        });
+        assertEquals(BankBudyErrorCodes.CLIENT_NOT_FOUND.getCode(), exception.getCode());
 
-            assert (Objects.equals(e.getCode(), BankBudyErrorCodes.CLIENT_NOT_FOUND.getCode()));
-        }
-
-
+        // Verify that account save was not called
         verify(clientRepository).findById(anyLong());
-
         verify(accountRepository, never()).save(any(Account.class));
     }
 }
