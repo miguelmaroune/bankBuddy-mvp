@@ -71,7 +71,7 @@ cd bankBuddy-mvp
 ### Build the Project
 To build the project using Maven, run the following command:
 ```bash
-./mvnw clean package
+mvn clean package -DskipTests
 ```
 ### Run the Application
 To run the application locally, use the following command:
