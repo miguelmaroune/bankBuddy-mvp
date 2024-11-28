@@ -104,4 +104,29 @@ Available Endpoints
 | `/api/accounts/deposit`   | POST   | Deposit funds into an account      | `{ "accountId": 1, "amount": 500 }`             |
 | `/api/accounts/withdraw`  | POST   | Withdraw funds from an account     | `{ "accountId": 1, "amount": 200 }`             |
 
+### Testing
+Run Unit Tests
+You can execute the unit tests using:
+```bash
+./mvnw test
+```
+### Test Coverage:
+Service Layer: Ensures the correctness of business logic.
+Hexagonal Principles: Validates architectural compliance.
 
+### Dockerization
+Build and Run with Docker
+Build the Docker image:
+```bash
+docker build -t bankbuddy-mvp .
+docker run -p 8080:8080 bankbuddy-mvp
+```
+Access the application at: http://localhost:8080
+
+### Future Enhancements
+Authentication & Authorization mechanisms using jwt.
+Adding Resilience4j to handle retries and circuit breakers
+Integrate Kafka to publish account transaction operations to a specific topic, ensuring reliable delivery and enabling guaranteed processing of these transactions by downstream services.
+Adding a spring batch that will launch peridically using a Cron and handle stuck transactions.
+Add a Spring Batch job configured to run periodically using a Cron expression to handle and recover stuck transactions
+Add e2e tests to cover end to end scenarios. 
