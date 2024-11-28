@@ -108,7 +108,7 @@ Available Endpoints
 Run Unit Tests
 You can execute the unit tests using:
 ```bash
-./mvnw test
+mvn test -Dtest=**/*Test
 ```
 ### Test Coverage:
 Service Layer: Ensures the correctness of business logic.
