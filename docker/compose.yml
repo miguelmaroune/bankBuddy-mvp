@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  app:
+    image: bankbuddy-core:latest
+    container_name: bankbuddy-app
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bankAccountManagement
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+
   db:
     image: postgres:latest
     container_name: bank-account-management
