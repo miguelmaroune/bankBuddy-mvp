@@ -81,4 +81,27 @@ To run the application locally, use the following command:
 ```bash
 java -jar target/bankBuddy-core-0.0.1-SNAPSHOT.jar
 ```
+### Run with Docker
+To build and run the application using Docker:
+```bash
+docker build -t bankbuddy-mvp .
+```
+Run the container:
+```bash
+docker run -p 8080:8080 bankbuddy-mvp
+```
+Access the application at http://localhost:8080
+
+### API Documentation
+Available Endpoints
+# API Endpoints Documentation
+
+| Endpoint                  | Method | Description                        | Example Payload                                   |
+|---------------------------|--------|------------------------------------|-------------------------------------------------|
+| `/api/clients`            | POST   | Create a new client                | `{ "name": "John Doe" }`                        |
+| `/api/accounts`           | POST   | Create a new account               | `{ "clientId": 1, "type": "SAVINGS" }`          |
+| `/api/accounts/{id}`      | GET    | Get account by ID                  | N/A                                             |
+| `/api/accounts/deposit`   | POST   | Deposit funds into an account      | `{ "accountId": 1, "amount": 500 }`             |
+| `/api/accounts/withdraw`  | POST   | Withdraw funds from an account     | `{ "accountId": 1, "amount": 200 }`             |
+
 
