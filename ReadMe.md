@@ -14,6 +14,7 @@ BankBuddy MVP is a lightweight banking application built using **Spring Boot**, 
 6. [Testing](#testing)
 7. [Dockerization](#dockerization)
 8. [Future Enhancements](#future-enhancements)
+9. [Migration data] (#dummy-data).
 
 ---
 
@@ -123,6 +124,16 @@ mvn test -Dtest=**/*Test
 ### Test Coverage:
 - **Service Layer**: Ensures the correctness of business logic.
 - **Hexagonal Principles**: Validates architectural compliance.
+
+# Dummy data:
+- In order to quickly get started with some sample data for your project, you can use the provided init-data.sql file. Simply run the SQL script located at:
+  src/main/resources/db/migration/init-data.sql.
+### Steps to run the dummy data script:
+- Ensure that your PostgreSQL database is up and running (e.g., using Docker or a local instance)
+- Run the init-data.sql file in your database environment.
+```bash
+  psql -U your_user -d your_database -f src/main/resources/db/migration/init-data.sql
+```
 
 ### Future Enhancements
 
