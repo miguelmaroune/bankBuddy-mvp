@@ -127,6 +127,7 @@ mvn test -Dtest=**/*Test
 ### Future Enhancements
 
 - **Authentication & Authorization**: Implement JWT-based authentication and authorization mechanisms.
+- **Liquibase**: For Database Migrations: Implement Liquibase to manage and automate database schema changes
 - **Resilience4j**: Add Resilience4j to handle retries and circuit breakers, ensuring fault tolerance and service stability.
 - **Kafka Integration**: Integrate Kafka to publish account transaction operations to a specific topic, ensuring reliable delivery and enabling guaranteed processing of these transactions by downstream services.
 - **Spring Batch**: Add a Spring Batch job configured to run periodically using a Cron expression to handle and recover stuck transactions.
