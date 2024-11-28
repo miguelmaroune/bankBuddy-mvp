@@ -94,13 +94,16 @@ Access the application at http://localhost:8080
 Available Endpoints
 # API Endpoints Documentation
 
-| Endpoint                  | Method | Description                        | Example Payload                                   |
-|---------------------------|--------|------------------------------------|-------------------------------------------------|
-| `/api/clients`            | POST   | Create a new client                | `{ "name": "John Doe" }`                        |
-| `/api/accounts`           | POST   | Create a new account               | `{ "clientId": 1, "type": "SAVINGS" }`          |
-| `/api/accounts/{id}`      | GET    | Get account by ID                  | N/A                                             |
-| `/api/accounts/deposit`   | POST   | Deposit funds into an account      | `{ "accountId": 1, "amount": 500 }`             |
-| `/api/accounts/withdraw`  | POST   | Withdraw funds from an account     | `{ "accountId": 1, "amount": 200 }`             |
+| Endpoint                         | Method | Description                                      | Example Payload                                   |
+|----------------------------------|--------|-------------------------------------------------|--------------------------------------------------|
+| `/api/clients`                   | POST   | Create a new client                             | `{ "name": "John Doe" }`                         |
+| `/api/accounts`                  | POST   | Create a new account                            | `{ "clientId": 1, "type": "SAVINGS" }`           |
+| `/api/accounts/{id}`             | GET    | Get account by ID                               | N/A                                              |
+| `/api/accounts/deposit`          | POST   | Deposit funds into an account                   | `{ "accountId": 1, "amount": 500 }`              |
+| `/api/accounts/withdraw`         | POST   | Withdraw funds from an account                  | `{ "accountId": 1, "amount": 200 }`              |
+| `/api/accounts/{accountId}/transactions` | GET    | Get transaction ledger for an account           | `{ "type": "VALID", "from": "01/01/2023" }`      |
+| `/api/accounts/{accountId}/transactions/report` | GET    | Generate a PDF report of account transactions    | `{ "type": "PENDING", "from": "01/01/2023" }`    |
+
 
 ### Testing
 Run Unit Tests
