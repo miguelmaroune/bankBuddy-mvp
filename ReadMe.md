@@ -111,8 +111,8 @@ You can execute the unit tests using:
 mvn test -Dtest=**/*Test
 ```
 ### Test Coverage:
-- **Service Layer: Ensures the correctness of business logic.
-- **Hexagonal Principles: Validates architectural compliance.
+- **Service Layer**: Ensures the correctness of business logic.
+- **Hexagonal Principles**: Validates architectural compliance.
 
 ### Future Enhancements
 
