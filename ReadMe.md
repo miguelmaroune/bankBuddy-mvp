@@ -52,6 +52,7 @@ This project adopts **Hexagonal Architecture** to promote a clean separation of 
 - **H2 Database** (for development)
 - **Maven** (build tool)
 - **JUnit** (testing framework)
+- **ArchUnit** (Validates architectural compliance)
 
 ---
 
