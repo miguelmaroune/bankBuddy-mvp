@@ -69,3 +69,16 @@ This project adopts **Hexagonal Architecture** to promote a clean separation of 
 ```bash
 git clone https://github.com/miguelmaroune/bankBuddy-mvp.git
 cd bankBuddy-mvp
+### Build the Project
+
+To build the project using Maven, run the following command:
+
+```bash
+./mvnw clean package
+### Run the Application
+
+To run the application locally, use the following command:
+
+```bash
+java -jar target/bankBuddy-core-0.0.1-SNAPSHOT.jar
+
