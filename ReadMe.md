@@ -13,9 +13,11 @@ BankBuddy POC is a lightweight banking application built using **Spring Boot**, 
 
 4. **Chain of Responsibility for Transaction Validations**: 
    - For transaction validation, the **Chain of Responsibility** pattern is employed. This pattern allows a series of validation checks to be applied in a sequential manner, where each handler (validator) is responsible for checking a specific aspect of the transaction.
-   - This design decouples the validation logic from the core transaction process and ensures that each validation can be easily modified or extended without affecting others. For example, you can add new validation checks (like checking account balance, verifying account ownership, etc.) without touching the existing logic.
-   - It provides flexibility in the validation process and ensures that the transactions go through a series of checks before being processed, making the system more robust and error-resistant.
+   - This design decouples the validation logic from the core transaction process and ensures that each validation can be easily modified or extended without affecting others.
 
+5. **CI/CD with GitHub Actions**
+   - A **CI/CD pipeline** has been set up using **GitHub Actions**. The pipeline automatically triggers tests on every commit or pull request to ensure code quality and prevent issues from being introduced into the system.
+     
 This combination of **Spring Security with JWT**, **Dockerization**, **State Design Pattern**, and **Chain of Responsibility** for validations ensures that BankBuddy is secure, maintainable, and scalable, while also offering flexibility for future enhancements.
 
 
